@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethnic Elegance - Homepage - pg 1</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        .header-bar {
+            background: linear-gradient(135deg, #6b1f1f 0%, #8b3535 100%);
+            color: #fff;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .site-title {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .breadcrumb {
+            font-size: 14px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        #homepage { display: block; }
+        .content-page { display: none; }
+        .content-page.active { display: block; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: 48px;
+            color: #6b1f1f;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .category-card {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .arch-container {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            border-radius: 50% 50% 0 0;
+            border: 3px solid #6b1f1f;
+            margin-bottom: 15px;
+            background: #f0e6d6;
+        }
+        
+        .arch-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .category-name {
+            font-family: Georgia, serif;
+            font-size: 18px;
+            color: #6b1f1f;
+            font-weight: 600;
+            border-top: 2px solid #6b1f1f;
+            padding-top: 10px;
+        }
+        
+        .page-title {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            color: #6b1f1f;
+            text-align: center;
+            margin-bottom: 10px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #6b1f1f;
+        }
+        
+        .content-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .text-content, .text-section {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .text-content h2, .text-section h2 {
+            font-family: Georgia, serif;
+            font-size: 24px;
+            color: #6b1f1f;
+            margin: 25px 0 15px 0;
+        }
+        
+        .text-content h2:first-child, .text-section h2:first-child {
+            margin-top: 0;
+        }
+        
+        .text-content p, .text-section p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+            line-height: 1.8;
+        }
+        
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .gallery-item {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: #f0e6d6;
+        }
+        
+        .gallery-item .caption {
+            padding: 15px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .content-wrapper {
+            margin-top: 40px;
+        }
+        
+        .text-section {
+            margin-bottom: 40px;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .image-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .image-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            background: #f0e6d6;
+        }
+        
+        .image-card .caption {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .image-card .caption h3 {
+            font-family: Georgia, serif;
+            font-size: 18px;
+            color: #6b1f1f;
+            margin-bottom: 8px;
+        }
+        
+        .image-card .caption p {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .quiz-box {
+            background: linear-gradient(135deg, #fff5e6 0%, #fff 100%);
+            border: 2px solid #6b1f1f;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .quiz-box h3 {
+            font-family: Georgia, serif;
+            color: #6b1f1f;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-options label {
+            display: block;
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-options label:hover {
+            background: #f0e6d6;
+            border-color: #6b1f1f;
+        }
+        
+        .poll-box {
+            background: linear-gradient(135deg, #e6f3ff 0%, #fff 100%);
+            border: 2px solid #6b1f1f;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .poll-box h3 {
+            font-family: Georgia, serif;
+            color: #6b1f1f;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .poll-options label {
+            display: block;
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .poll-options label:hover {
+            background: #e6f3ff;
+            border-color: #6b1f1f;
+        }
+        
+        .poll-results {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .poll-bar {
+            margin: 10px 0;
+        }
+        
+        .poll-bar-label {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .poll-bar-fill {
+            height: 30px;
+            background: #6b1f1f;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .did-you-know {
+            background: linear-gradient(135deg, #fffacd 0%, #fff 100%);
+            border-left: 4px solid #6b1f1f;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+        
+        .did-you-know h4 {
+            font-family: Georgia, serif;
+            color: #6b1f1f;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #6b1f1f;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #8b3535;
+            transform: translateY(-2px);
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .result.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .result.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+        
+        @media (max-width: 968px) {
+            .categories-grid { grid-template-columns: repeat(2, 1fr); }
+            .content-section { grid-template-columns: 1fr; }
+            .image-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 600px) {
+            .categories-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 32px; }
+            .site-title { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-bar">
+        <div class="site-title">Ethnic Elegance</div>
+        <nav class="breadcrumb">
+            <a href="#" onclick="showHomepage(); return false;" id="breadcrumb-home">homepage</a>
+            <span id="breadcrumb-separator" style="display:none">|</span>
+            <span id="breadcrumb-page" style="display:none"></span>
+            <span id="breadcrumb-separator2" style="display:none">|</span>
+            <span id="breadcrumb-number">pg 1</span>
+        </nav>
+    </header>
+    
+    <div id="homepage">
+        <main class="container">
+            <section class="hero">
+                <h1>Discover Karnataka's Traditional Clothing Heritage</h1>
+                <p>Explore the rich tapestry of Carnatic clothing traditions, from the elegant drapes of Mysore silk to the intricate artistry of Ilkal embroidery. Each style tells a story of craftsmanship, culture, and timeless beauty passed down through generations.</p>
+            </section>
+            
+            <section class="categories-grid">
+                <a href="#" onclick="showPage('mysore'); return false;" class="category-card">
+                    <div class="arch-container">
+                        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&h=500&fit=crop" alt="Mysore silk sarees" onerror="this.style.background='#e6d5c0'">
+                    </div>
+                    <h2 class="category-name">Mysore silk sarees</h2>
+                </a>
+                
+                <a href="#" onclick="showPage('lambani'); return false;" class="category-card">
+                    <div class="arch-container">
+                        <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400&h=500&fit=crop" alt="Lambani embroidery" onerror="this.style.background='#ffd5a0'">
+                    </div>
+                    <h2 class="category-name">Lambani embroidery</h2>
+                </a>
+                
+                <a href="#" onclick="showPage('kanjeevaram'); return false;" class="category-card">
+                    <div class="arch-container">
+                        <img src="https://images.unsplash.com/photo-1583391733981-2f0c9e1cc3e0?w=400&h=500&fit=crop" alt="Kanjeevaram silk sarees" onerror="this.style.background='#ffccd0'">
+                    </div>
+                    <h2 class="category-name">Kanjeevaram silk sarees</h2>
+                </a>
+                
+                <a href="#" onclick="showPage('ilkal'); return false;" class="category-card">
+                    <div class="arch-container">
+                        <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=400&h=500&fit=crop" alt="Ilkal embroidery" onerror="this.style.background='#e5d5ff'">
+                    </div>
+                    <h2 class="category-name">Ilkal embroidery & sarees</h2>
+                </a>
+            </section>
+        </main>
+    </div>
+    
+    <div id="mysore-page" class="content-page">
+        <main class="container">
+            <h1 class="page-title">Mysore Silk Sarees</h1>
+            
+            <div class="content-section">
+                <div class="text-content">
+                    <h2>The Royal Heritage of Mysore Silk</h2>
+                    <p>Mysore silk sarees represent one of Karnataka's most treasured textile traditions. The journey of Mysore silk began in the royal courts of the Wodeyar dynasty, where silk weaving received royal patronage and flourished as an art form. The establishment of the Karnataka Silk Industries Corporation (KSIC) in 1912 marked a significant milestone in preserving and promoting this magnificent craft.</p>
+                    
+                    <p>These sarees are crafted from pure mulberry silk, known for its exceptional softness, natural sheen, and lustrous appearance. The silk threads undergo meticulous processing, from the careful selection of cocoons to the intricate dying process using vibrant, long-lasting colors. Each Mysore silk saree is a testament to the skilled craftsmanship of Karnataka's weavers.</p>
+                    
+                    <div class="did-you-know">
+                        <h4>💡 Did You Know?</h4>
+                        <p>A single Mysore silk saree can take anywhere from 10 to 20 days to complete, with skilled artisans working 8-10 hours daily. The intricate zari work alone can add several days to the production time!</p>
+                    </div>
+                    
+                    <div class="quiz-box">
+                        <h3>📝 Quick Knowledge Check</h3>
+                        <p><strong>Question: When was the Karnataka Silk Industries Corporation established?</strong></p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> 1905</label>
+                            <label><input type="radio" name="q1" value="b"> 1912</label>
+                            <label><input type="radio" name="q1" value="c"> 1920</label>
+                            <label><input type="radio" name="q1" value="d"> 1947</label>
+                        </div>
+                        <button class="btn" onclick="checkAnswer1()">Submit Answer</button>
+                        <div id="result1" class="result"></div>
+                    </div>
+                    
+                    <h2>Distinctive Features and Artistry</h2>
+                    <p>What sets Mysore silk apart is its lightweight texture combined with a rich, smooth feel. The sarees are adorned with intricate zari work - gold or silver metallic thread embroidery that creates stunning patterns inspired by nature, temple architecture, and royal heritage. Common motifs include majestic peacocks, elephants, parrots, lotus flowers, and geometric designs that reflect Karnataka's cultural richness.</p>
+                    
+                    <p>The color palette of Mysore silk sarees ranges from vibrant blues, deep purples, and rich reds to elegant pastels and earthy tones. The borders and pallu (the decorative end piece) typically feature contrasting colors with elaborate zari work, creating a visual masterpiece that captivates the eye and celebrates traditional aesthetics.</p>
+                    
+                    <h2>Cultural Significance and Modern Recognition</h2>
+                    <p>Mysore silk sarees hold profound cultural significance in Karnataka and beyond. They are considered auspicious and are the preferred choice for weddings, festivals, and important religious ceremonies. Wearing a Mysore silk saree represents not just elegance, but also a connection to Karnataka's artistic heritage and centuries-old weaving traditions.</p>
+                    
+                    <p>In recognition of its unique characteristics and geographical origin, Mysore silk received the prestigious Geographical Indication (GI) tag. This certification ensures that only sarees manufactured in Karnataka following traditional methods can bear the Mysore silk label, protecting authenticity and supporting local artisan communities who keep this beautiful craft alive.</p>
+                    
+                    <div class="did-you-know">
+                        <h4>💡 Fun Fact!</h4>
+                        <p>Mysore silk sarees are so durable that they can be passed down through generations as family heirlooms. With proper care, a Mysore silk saree can last over 50 years while maintaining its luster and beauty!</p>
+                    </div>
+                </div>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&h=300&fit=crop" alt="Blue Mysore silk" onerror="this.style.display='none'">
+                        <div class="caption">Traditional Mysore silk with intricate patterns and zari work</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1583391733956-6750e0ff4e8b?w=400&h=300&fit=crop" alt="Silk weaving" onerror="this.style.display='none'">
+                        <div class="caption">Skilled artisan weaving pure mulberry silk on traditional loom</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1610030469893-c7a0b6d00f93?w=400&h=300&fit=crop" alt="Colorful silk" onerror="this.style.display='none'">
+                        <div class="caption">Vibrant color collection showcasing Mysore silk diversity</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <div id="lambani-page" class="content-page">
+        <main class="container">
+            <h1 class="page-title">Lambani Embroidery</h1>
+            
+            <div class="content-wrapper">
+                <section class="text-section">
+                    <h2>The Vibrant Art of Lambani</h2>
+                    <p>Lambani embroidery, also known as Banjara embroidery, is a spectacular textile art form practiced by the Lambani tribal community of Karnataka. This semi-nomadic tribe has preserved their distinctive embroidery tradition for centuries, creating textiles that are instantly recognizable for their riot of colors, mirror work, and intricate stitching patterns.</p>
+                    
+                    <p>The Lambani people originally hailed from Rajasthan and migrated across India, settling in various parts of Karnataka. Despite their travels, they maintained their unique cultural identity, with embroidery serving as both artistic expression and a means of preserving their heritage. Each piece of Lambani embroidery tells a story, with patterns and motifs passed down through generations of women artisans.</p>
+                    
+                    <div class="did-you-know">
+                        <h4>💡 Did You Know?</h4>
+                        <p>Lambani women learn embroidery from childhood, and the skill is traditionally passed from mother to daughter. The intricate mirror work technique, called "shisha embroidery," uses pieces of mica or mirror stitched into fabric using precise buttonhole stitches!</p>
+                    </div>
+                    
+                    <div class="poll-box">
+                        <h3>🗳️ Community Poll: What aspect of Lambani embroidery fascinates you most?</h3>
+                        <div class="poll-options">
+                            <label><input type="radio" name="poll1" value="colors"> The vibrant color combinations</label>
+                            <label><input type="radio" name="poll1" value="mirrors"> The mirror work (shisha embroidery)</label>
+                            <label><input type="radio" name="poll1" value="patterns"> The geometric patterns and designs</label>
+                            <label><input type="radio" name="poll1" value="heritage"> The cultural heritage and tradition</label>
+                        </div>
+                        <button class="btn" onclick="submitPoll()">Vote & See Results</button>
+                        <div id="pollResults" class="poll-results">
+                            <h4 style="margin: 15px 0 10px 0; color: #6b1f1f;">Poll Results:</h4>
+                            <div class="poll-bar">
+                                <div class="poll-bar-label">Vibrant colors:</div>
+                                <div class="poll-bar-fill" style="width: 40%">40%</div>
+                            </div>
+                            <div class="poll-bar">
+                                <div class="poll-bar-label">Mirror work:</div>
+                                <div class="poll-bar-fill" style="width: 30%">30%</div>
+                            </div>
+                            <div class="poll-bar">
+                                <div class="poll-bar-label">Geometric patterns:</div>
+                                <div class="poll-bar-fill" style="width: 20%">20%</div>
+                            </div>
+                            <div class="poll-bar">
+                                <div class="poll-bar-label">Cultural heritage:</div>
+                                <div class="poll-bar-fill" style="width: 10%">10%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Distinctive Techniques and Materials</h2>
+                    <p>Lambani embroidery is characterized by its bold use of color, with bright reds, oranges, yellows, greens, and blues creating visually stunning compositions. The embroidery incorporates various techniques including appliqué work, cowrie shell embellishments, and the signature mirror work known as "shisha" embroidery, where small pieces of mirror are stitched into the fabric using intricate threadwork.</p>
+                    
+                    <p>The base fabric is typically cotton or wool, chosen for durability. Artisans use a variety of stitches including chain stitch, herringbone stitch, and buttonhole stitch to create complex geometric patterns. These patterns often include triangles, diamonds, zigzags, and floral motifs that hold symbolic meaning within Lambani culture.</p>
+                    
+                    <h2>Contemporary Revival and Recognition</h2>
+                    <p>In recent years, Lambani embroidery has gained significant recognition in the fashion and design world. Contemporary designers are collaborating with Lambani artisans to create modern products including bags, jackets, home décor items, and fashion accessories that incorporate traditional embroidery techniques.</p>
+                    
+                    <p>This revival has provided economic opportunities for Lambani communities, particularly women artisans who are the primary practitioners of this craft. Various government initiatives and NGOs are working to preserve this art form while helping artisans access larger markets and fair compensation for their skilled work.</p>
+                    
+                    <div class="did-you-know">
+                        <h4>💡 Fun Fact!</h4>
+                        <p>Traditional Lambani garments can contain hundreds of small mirrors, with a single piece taking several weeks to complete. The mirrors aren't just decorative - they were historically believed to ward off evil spirits!</p>
+                    </div>
+                    
+                    <h2>Cultural Significance</h2>
+                    <p>For the Lambani community, embroidery is far more than decorative art—it represents cultural identity, social status, and personal expression. Traditional Lambani garments, heavily embroidered and adorned with mirrors and shells, are worn during festivals, weddings, and important community gatherings, serving as visual markers of Lambani heritage and pride.</p>
+                </section>
+                
+                <section class="image-grid">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&h=400&fit=crop" alt="Lambani embroidery" onerror="this.style.display='none'">
+                        <div class="caption">
+                            <h3>Traditional Lambani Work</h3>
+                            <p>Vibrant colors with intricate mirror embellishments</p>
+                        </div>
+                    </div>
+                    
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1583391733981-2f0c9e1cc3e0?w=500&h=400&fit=crop" alt="Lambani artisan" onerror="this.style.display='none'">
+                        <div class="caption">
+                            <h3>Artisan at Work</h3>
+                            <p>Preserving centuries-old embroidery techniques</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <div id="kanjeevaram-page" class="content-page">
+        <main class="container">
+            <h1 class="page-title">Kanjeevaram Silk Sarees</h1>
+            
+            <div class="content-section">
+                <div class="text-content">
+                    <h2>The Legend of Kanchipuram</h2>
+                    <p>Kanjeevaram silk sarees, also known as Kanchipuram or Kanjivaram sarees, are among the finest silk sarees produced in India. Originating from Kanchipuram in Tamil Nadu, these sarees have a deep connection with Karnataka's weaving heritage, as many weavers from the region have historically contributed to this craft. The town of Kanchipuram has been a silk weaving center for over 400 years, with its roots extending back to the Pallava dynasty.</p>
+                    
+                    <p>Legend has it that the weavers of Kanchipuram are descendants of Sage Markanda, the master weaver of the gods. This divine association is reflected in the sacred motifs and temple-inspired designs that adorn these magnificent sarees. The craft has been passed down through generations, with each family of weavers adding their unique touch while preserving traditional techniques.</p>
+                    
+                    <div class="did-you-know">
+                        <h4>💡 Did You Know?</h4>
+                        <p>Kanjeevaram sarees are so durable that there's a saying: "If you burn a Kanjeevaram saree and its border separately, you can collect the ash separately!" This refers to the unique interlocking technique where the border and body are woven with different colored threads but remain inseparable.</p>
+                    </div>
+                    
+                    <div class="quiz-box">
+                        <h3>📝 Test Your Knowledge</h3>
+                        <p><strong>Question: What makes Kanjeevaram silk sarees unique in their construction?</strong></p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> They use synthetic silk threads</label>
+                            <label><input type="radio" name="q2" value="b"> The border is woven separately and attached later</label>
+                            <label><input type="radio" name="q2" value="c"> The border and body are interlocked in a unique weaving technique</label>
+                            <label><input type="radio" name="q2" value="d"> They are machine-woven for consistency</label>
+                        </div>
+                        <button class="btn" onclick="checkAnswer2()">Submit Answer</button>
+                        <div id="result2" class="result"></div>
+                    </div>
+                    
+                    <h2>Distinctive Characteristics</h2>
+                    <p>Kanjeevaram sarees are renowned for their exceptional durability, heavy weight, and lustrous sheen. What sets them apart is the unique weaving technique where the border and body of the saree are woven separately in different colors and then interlocked together, creating a strong, seamless finish that can last for generations. This technique requires exceptional skill and precision from the weaver.</p>
+                    
+                    <p>The sarees feature rich, vibrant colors and are characterized by their wide, contrasting borders and elaborate pallus (the decorative end piece). The zari work—using gold or silver threads—is particularly prominent, creating intricate patterns inspired by temple architecture. Common motifs include peacocks, elephants, parrots, temple gopurams, chariots, and traditional checks called "rudraksham" and "pattani."</p>
+                    
+                    <h2>The Weaving Process</h2>
+                    <p>Creating a Kanjeevaram silk saree is a labor-intensive process that can take anywhere from 10 days to several months, depending on the complexity of the design. The pure mulberry silk threads are dyed using traditional methods, and the zari threads are carefully prepared. Three weavers typically work together on a single saree—two work the body and border while one manages the pallu design.</p>
+                    
+                    <p>The weight of a Kanjeevaram saree can range from 400 grams to 900 grams or more, with the heavier sarees being more expensive due to the extensive zari work. The quality is determined by factors including the purity of silk, the authenticity of the zari (real gold or silver versus imitation), the intricacy of the design, and the craftsmanship of the weaving.</p>
+                    
+                    <div class="did-you-know">
+                        <h4>💡 Fun Fact!</h4>
+                        <p>A genuine Kanjeevaram saree with heavy zari work can cost anywhere from ₹10,000 to over ₹1,00,000! The most expensive ones use real gold and silver threads, making them true investments and family heirlooms.</p>
+                    </div>
+                    
+                    <h2>Cultural Heritage and Recognition</h2>
+                    <p>Kanjeevaram silk sarees are considered auspicious and are an integral part of South Indian weddings and religious ceremonies. They symbolize elegance, tradition, and prosperity. In Karnataka, these sarees are particularly cherished and often form part of a bride's trousseau, passed down as family heirlooms.</p>
+                    
+                    <p>In 2005, Kanchipuram silk sarees received the Geographical Indication (GI) tag, recognizing their unique origin and protecting the authenticity of the craft. This recognition has helped preserve traditional weaving techniques while ensuring that weavers receive fair recognition and compensation for their skilled artistry.</p>
+                </div>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1583391733981-2f0c9e1cc3e0?w=400&h=300&fit=crop" alt="Red Kanjeevaram" onerror="this.style.display='none'">
+                        <div class="caption">Rich red Kanjeevaram with traditional gold zari border</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1610030469893-c7a0b6d00f93?w=400&h=300&fit=crop" alt="Traditional loom" onerror="this.style.display='none'">
+                        <div class="caption">Traditional handloom weaving process in Kanchipuram</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=400&h=300&fit=crop" alt="Colorful Kanjeevaram" onerror="this.style.display='none'">
+                        <div class="caption">Vibrant color palette of authentic Kanjeevaram silk</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <div id="ilkal-page" class="content-page">
+        <main class="container">
+            <h1 class="page-title">Ilkal Embroidery & Sarees</h1>
+            
+            <div class="content-wrapper">
+                <section class="text-section">
+                    <h2>The Heritage of Ilkal Weaving</h2>
+                    <p>Ilkal sarees originate from the town of Ilkal in the Bagalkot district of Karnataka, with a weaving tradition that spans over 400 years. This handloom textile has roots tracing back to the Chalukya period, making it one of Karnataka's most ancient and treasured textile traditions. The craft has been carefully preserved and passed down through generations of skilled weavers who have maintained the unique techniques that define Ilkal textiles.</p>
+                    
+                    <p>The town of Ilkal has been a hub of weaving activity for centuries, with entire families dedicated to this craft. The weavers have maintained their traditional methods despite modernization, ensuring that each Ilkal saree carries forward the legacy of Karnataka's rich textile heritage.</p>
+                    
+                    <div class="did-you-know">
+                        <h4>💡 Did You Know?</h4>
+                        <p>The word "Ilkal" itself is derived from the Kannada words "Elu" (weave) and "Kala" (art), literally meaning "the art of weaving"! The town is so synonymous with this craft that locals are known as "kasutidara" or "weaving people."</p>
+                    </div>
+                    
+                    <div class="quiz-box">
+                        <h3>📝 Quick Quiz</h3>
+                        <p><strong>Question: What is the unique weaving technique used in Ilkal sarees called?</strong></p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> Jamdani</label>
+                            <label><input type="radio" name="q3" value="b"> Tope Teni</label>
+                            <label><input type="radio" name="q3" value="c"> Bandhani</label>
+                            <label><input type="radio" name="q3" value="d"> Kalamkari</label>
+                        </div>
+                        <button class="btn" onclick="checkAnswer3()">Submit Answer</button>
+                        <div id="result3" class="result"></div>
+                    </div>
+                    
+                    <h2>The Distinctive Tope Teni Technique</h2>
+                    <p>What makes Ilkal sarees truly unique is the "Tope Teni" weaving technique, a method where the body and border of the saree are woven separately using different colored threads and then joined together during the weaving process. This innovative technique creates a beautiful contrast and allows for intricate geometric patterns that have become the hallmark of Ilkal textiles. The precision required for this technique demonstrates the exceptional skill of Ilkal weavers.</p>
+                    
+                    <p>The most iconic element of Ilkal sarees is the kasuti embroidery and the distinctive pallu design featuring the "tope" or pompon pattern. This pattern is created using a special weaving technique that produces a series of small, raised designs resembling pompons, which are unique to Ilkal sarees.</p>
+                    
+                    <h2>Materials and Color Palette</h2>
+                    <p>Ilkal sarees are traditionally woven using cotton, silk, or a blend of both materials. The cotton-silk blend, known as "cotton-silk" or "khun," offers both durability and comfort, making these sarees suitable for everyday wear as well as special occasions. Pure cotton Ilkal sarees are particularly popular in rural Karnataka for their breathability and practicality.</p>
+                    
+                    <p>The color palette of Ilkal sarees is bold and vibrant, with striking combinations that catch the eye. Rich purples paired with bright oranges, deep reds contrasted with emerald greens, and royal blues combined with golden yellows are characteristic color schemes. The borders typically feature contrasting colors with gold or silver zari work, creating a dramatic visual impact.</p>
+                    
+                    <div class="did-you-know">
+                        <h4>💡 Fun Fact!</h4>
+                        <p>Ilkal sarees have three distinct varieties: "Gomi Teni" (a plain weave), "Chikki Paras" (small checks), and "Pattani" (large checks). Each variety requires different weaving skills and creates unique visual effects!</p>
+                    </div>
+                    
+                    <h2>Patterns and Motifs</h2>
+                    <p>Ilkal sarees feature predominantly geometric patterns, including diamonds, squares, triangles, and checks. Temple-inspired motifs such as gopurams (temple towers), chariots, and traditional architectural elements are common. The "chikki paras" (a type of check pattern) and "gomi" (a specific border design) are signature patterns that identify authentic Ilkal sarees.</p>
+                    
+                    <h2>Cultural Significance and Modern Revival</h2>
+                    <p>Ilkal sarees hold significant cultural importance in Karnataka and neighboring states. They are traditionally worn during festivals, weddings, and religious ceremonies. The weaving craft supports numerous families in Ilkal and surrounding areas, serving as a vital source of livelihood and preserving cultural identity.</p>
+                    
+                    <p>In 2005, Ilkal sarees received the Geographical Indication (GI) tag, recognizing their unique origin and protecting the authenticity of the craft. This recognition has helped revive interest in traditional Ilkal weaving, opened new markets for artisans, and ensured fair compensation for their skilled work. Today, contemporary designers are collaborating with weavers to create modern interpretations while preserving traditional techniques, bringing Ilkal sarees to global audiences.</p>
+                    
+                    <h2>The Weaving Process</h2>
+                    <p>Creating an Ilkal saree is a labor-intensive process that can take several days to weeks, depending on the complexity of the design. The process begins with carefully selecting and preparing the cotton and silk threads. The threads are dyed using both natural and synthetic dyes to achieve the desired vibrant colors that Ilkal sarees are known for.</p>
+                    
+                    <p>The weaver uses a traditional pit loom or frame loom, skillfully interlacing the warp and weft threads to create intricate patterns. The signature "Tope Teni" technique requires exceptional precision, as the border threads must be perfectly aligned with the body of the saree to create a seamless join. The final product is a testament to the weaver's skill, patience, and artistic vision, representing hours of dedicated craftsmanship.</p>
+                </section>
+                
+                <section class="image-grid">
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500&h=400&fit=crop" alt="Purple Ilkal saree" onerror="this.style.display='none'">
+                        <div class="caption">
+                            <h3>Traditional Ilkal Saree</h3>
+                            <p>Purple and gold with geometric Tope Teni patterns</p>
+                        </div>
+                    </div>
+                    
+                    <div class="image-card">
+                        <img src="https://images.unsplash.com/photo-1610030469893-c7a0b6d00f93?w=500&h=400&fit=crop" alt="Ilkal weaving" onerror="this.style.display='none'">
+                        <div class="caption">
+                            <h3>Handloom Weaving</h3>
+                            <p>Master weaver demonstrating the Tope Teni technique</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        function showPage(pageName) {
+            document.getElementById('homepage').style.display = 'none';
+            var allPages = document.querySelectorAll('.content-page');
+            for(var i = 0; i < allPages.length; i++) {
+                allPages[i].style.display = 'none';
+                allPages[i].classList.remove('active');
+            }
+            
+            var selectedPage = document.getElementById(pageName + '-page');
+            if(selectedPage) {
+                selectedPage.style.display = 'block';
+                selectedPage.classList.add('active');
+            }
+            
+            updateBreadcrumb(pageName);
+            window.scrollTo(0, 0);
+        }
+        
+        function showHomepage() {
+            var allPages = document.querySelectorAll('.content-page');
+            for(var i = 0; i < allPages.length; i++) {
+                allPages[i].style.display = 'none';
+                allPages[i].classList.remove('active');
+            }
+            
+            document.getElementById('homepage').style.display = 'block';
+            document.getElementById('breadcrumb-separator').style.display = 'none';
+            document.getElementById('breadcrumb-page').style.display = 'none';
+            document.getElementById('breadcrumb-separator2').style.display = 'none';
+            document.getElementById('breadcrumb-number').textContent = 'pg 1';
+            document.title = 'Ethnic Elegance - Homepage - pg 1';
+            window.scrollTo(0, 0);
+        }
+        
+        function updateBreadcrumb(pageName) {
+            var pageNames = {
+                'mysore': 'Mysore silk sarees',
+                'lambani': 'Lambani embroidery',
+                'kanjeevaram': 'Kanjeevaram silk sarees',
+                'ilkal': 'Ilkal embroidery & sarees'
+            };
+            
+            var pageNumbers = {
+                'mysore': 'pg 2',
+                'lambani': 'pg 2',
+                'kanjeevaram': 'pg 3',
+                'ilkal': 'pg 4'
+            };
+            
+            document.getElementById('breadcrumb-separator').style.display = 'inline';
+            document.getElementById('breadcrumb-page').style.display = 'inline';
+            document.getElementById('breadcrumb-separator2').style.display = 'inline';
+            document.getElementById('breadcrumb-page').textContent = pageNames[pageName];
+            document.getElementById('breadcrumb-number').textContent = pageNumbers[pageName];
+            document.title = 'Ethnic Elegance - ' + pageNames[pageName] + ' - ' + pageNumbers[pageName];
+        }
+        
+        function checkAnswer1() {
+            var selected = document.querySelector('input[name="q1"]:checked');
+            var result = document.getElementById('result1');
+            
+            if(!selected) {
+                alert('Please select an answer before submitting!');
+                return;
+            }
+            
+            result.style.display = 'block';
+            if(selected.value === 'b') {
+                result.className = 'result correct';
+                result.innerHTML = '✓ <strong>Correct!</strong> The Karnataka Silk Industries Corporation was established in 1912 to preserve and promote the art of Mysore silk weaving.';
+            } else {
+                result.className = 'result incorrect';
+                result.innerHTML = '✗ <strong>Incorrect.</strong> The correct answer is 1912. The KSIC was founded in 1912 to support silk weaving in Karnataka.';
+            }
+        }
+        
+        function checkAnswer2() {
+            var selected = document.querySelector('input[name="q2"]:checked');
+            var result = document.getElementById('result2');
+            
+            if(!selected) {
+                alert('Please select an answer before submitting!');
+                return;
+            }
+            
+            result.style.display = 'block';
+            if(selected.value === 'c') {
+                result.className = 'result correct';
+                result.innerHTML = '✓ <strong>Correct!</strong> Kanjeevaram sarees use a unique interlocking technique where the border and body are woven separately and then joined seamlessly.';
+            } else {
+                result.className = 'result incorrect';
+                result.innerHTML = '✗ <strong>Incorrect.</strong> The correct answer is that the border and body are interlocked using a unique weaving technique.';
+            }
+        }
+        
+        function checkAnswer3() {
+            var selected = document.querySelector('input[name="q3"]:checked');
+            var result = document.getElementById('result3');
+            
+            if(!selected) {
+                alert('Please select an answer before submitting!');
+                return;
+            }
+            
+            result.style.display = 'block';
+            if(selected.value === 'b') {
+                result.className = 'result correct';
+                result.innerHTML = '✓ <strong>Correct!</strong> Tope Teni is the signature technique where the body and border are woven separately and joined together.';
+            } else {
+                result.className = 'result incorrect';
+                result.innerHTML = '✗ <strong>Incorrect.</strong> The correct answer is Tope Teni, the unique interlocking technique of Ilkal sarees.';
+            }
+        }
+        
+        function submitPoll() {
+            var selected = document.querySelector('input[name="poll1"]:checked');
+            
+            if(!selected) {
+                alert('Please select an option before voting!');
+                return;
+            }
+            
+            document.getElementById('pollResults').style.display = 'block';
+            alert('Thank you for participating! The poll results are displayed below.');
+        }
+        
+        window.onload = function() {
+            showHomepage();
+        };
+    </script>
+</body>
+</html>
